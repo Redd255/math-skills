@@ -4,15 +4,21 @@ import (
 	"fmt"
 	"io"
 	"log"
-	mathskils "mathskills/src"
+	mathskills "mathskills/src"
 	"os"
 	"strconv"
 )
 
 func main() {
-	Data := mathskils.Read()
-	Sorted := mathskils.QuickSort(Data)
-	resfile, err := os.Create("result/"+"result.txt")
+	//read the file
+	Data, err := mathskills.Read()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//sort the data
+	Sorted := mathskills.QuickSort(Data)
+	resfile, err := os.Create("result/" + "result.txt")
 	if err != nil {
 		log.Fatal("Error creating file : ", err)
 	}
@@ -25,11 +31,11 @@ func main() {
 	if err != nil {
 		log.Fatal("Error writing to file : ", err)
 	}
-	average := mathskils.Average(Sorted)
-	median := mathskils.Mediane(Sorted)
-	variance, deviation := mathskils.Variance(Sorted)
-	fmt.Println("Average:", mathskils.Round(average))
-	fmt.Println("Median:", mathskils.Round(median))
-	fmt.Println("Variance:", mathskils.Round(variance))
-	fmt.Println("Standard Deviation:", mathskils.Round(deviation))
+	average := mathskills.Average(Sorted)
+	median := mathskills.Mediane(Sorted)
+	variance, deviation := mathskills.Variance(Sorted)
+	fmt.Println("Average:", mathskills.Round(average))
+	fmt.Println("Median:", mathskills.Round(median))
+	fmt.Println("Variance:", mathskills.Round(variance))
+	fmt.Println("Standard Deviation:", mathskills.Round(deviation))
 }

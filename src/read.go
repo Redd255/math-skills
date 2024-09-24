@@ -1,4 +1,4 @@
-package mathskils
+package mathskills
 
 import (
 	"fmt"
@@ -8,23 +8,27 @@ import (
 	"strings"
 )
 
-func Read() []float64 {
-	var Population []float64
-
+func Read() ([]float64, error) {
+	// Read the content of the file
 	content, err := os.ReadFile("data.txt")
 	if err != nil {
-		log.Fatal("couldn't read file")
+		return nil, fmt.Errorf("error reading file: %w", err)
 	}
 
-	Split := strings.Split(strings.TrimSpace(string(content)), "\n")
+	// Trim spaces and split the content into lines
+	lines := strings.Split(strings.TrimSpace(string(content)), "\n")
+	var population []float64
 
-	for _, v := range Split {
-		s, err := strconv.ParseFloat(v, 64)
+	// Parse each line into a float64 value 
+	for _, line := range lines {
+		value, err := strconv.ParseFloat(line, 64)
 		if err != nil {
-			fmt.Print("Parse failed", string(v), "in this value")
-		} else {
-			Population = append(Population, s)
+			log.Printf("Skipping invalid value: %s (error: %v)", line, err)
+			continue
 		}
+		population = append(population, value)
 	}
-	return Population
+
+	// Return the parsed population data
+	return population, nil
 }

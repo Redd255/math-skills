@@ -1,4 +1,4 @@
-package mathskils
+package mathskills
 
 import "math"
 

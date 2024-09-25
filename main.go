@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	mathskills "mathskills/src"
 )
 
@@ -9,7 +9,8 @@ func main() {
 	// Read the data from the file
 	data, err := mathskills.Read()
 	if err != nil {
-		log.Fatalf("Failed to read data: %v", err)
+		fmt.Println("Failed to read data:", err)
+		return
 	}
 
 	// Sort the data

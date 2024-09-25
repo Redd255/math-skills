@@ -22,5 +22,12 @@ func QuickSort(arr []float64) []float64 {
 	}
 
 	// Recursively sort less and greater arrays, then combine
-	return append(append(QuickSort(less), equal...), QuickSort(greater)...)
+	sortedLess := QuickSort(less)
+	sortedGreater := QuickSort(greater)
+
+	// Combine sorted less, equal, and sorted greater
+	result := append(sortedLess, equal...)
+	result = append(result, sortedGreater...)
+
+	return result
 }

@@ -2,12 +2,11 @@ package mathskills
 
 import "fmt"
 
-
-// displayResults prints the calculated statistical data
+// displayResults prints the calculated data
 
 func DisplayResults(average, median, variance, deviation float64) {
-	fmt.Printf("Average: %d\n", Round(average))
-	fmt.Printf("Median: %d\n", Round(median))
-	fmt.Printf("Variance: %d\n", Round(variance))
-	fmt.Printf("Standard Deviation: %d\n", Round(deviation))
+	fmt.Println("Average:", Round(average))
+	fmt.Println("Median:", Round(median))
+	fmt.Println("Variance:", Round(variance))
+	fmt.Println("Standard Deviation:", Round(deviation))
 }
